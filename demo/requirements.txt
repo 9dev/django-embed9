@@ -1,2 +1,4 @@
 django==1.6.5
 django-debug-toolbar
+
+pillow
