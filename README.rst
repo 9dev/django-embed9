@@ -29,7 +29,7 @@ Usage
 
 ...
 
-``django-embed9`` provides a simple demo with example usage.
+``django-embed9`` provides a simple demo with example usage. To install it from the console, navigate to ``embed9/demo`` directory and execute ``make install`` command. To run it, type ``make``.
 
 Customization
 =============
