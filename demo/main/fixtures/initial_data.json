@@ -9,5 +9,24 @@
 			"is_superuser": true, 
 			"is_staff": true
 		}
-	}
+	},
+    {
+        "pk":1,
+        "model":"main.text",
+        "fields":{
+            "text":"Lorem ipsum dolor samet",
+            "user":null,
+            "title":"Title of the text"
+        }
+    },
+    {
+        "pk":1,
+        "model":"main.image",
+        "fields":{
+            "image":"images/central-park-29261295175341bGD.jpg",
+            "user":null,
+            "awesome":false,
+            "title":"Central Park"
+        }
+    }
 ]
