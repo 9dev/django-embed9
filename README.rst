@@ -29,6 +29,8 @@ Usage
 
 ...
 
+``django-embed9`` provides a simple demo with example usage.
+
 Customization
 =============
 
