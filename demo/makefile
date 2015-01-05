@@ -10,6 +10,7 @@ default:
 	$(MAKE) run
 
 install:
+	virtualenv $(VENV_PATH)
 	$(MAKE) upgrade
 	$(MAKE) syncdb
 
