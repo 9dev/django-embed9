@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>All images</h1>
+	{% for image in image_list %}
+		<p>
+			<a href="{% url 'main:image_detail' image.pk %}">{{ image.title }}</a>
+		</p>
+	{% endfor %}
+{% endblock %}
