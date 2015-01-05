@@ -1,0 +1,10 @@
+include LICENSE
+include README.md
+recursive-include embed9/static *
+recursive-include embed9/templates *
+recursive-include embed9/templatetags *
+recursive-include embed9/management *
+recursive-include embed9/fixtures *
+recursive-include embed9/resources *
+global-exclude *pyc
+global-exclude ~*
