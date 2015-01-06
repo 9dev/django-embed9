@@ -13,6 +13,8 @@ Requirements
 
 - ...
 
+- Django site framework
+
 Installation
 ============
 
@@ -27,6 +29,8 @@ Installation
 - Add url pattern to your urls.py::
 
     url(r'^embed/', include('embed9.urls', namespace='embed9'))
+
+- Create a site in your database and set the SITE_ID setting
 
 Usage
 =====
@@ -50,12 +54,29 @@ Inside the template you can access a context variable named after your model (bu
 
 By default, defined widget template will render as an `iframe` on external websites. 
 
+To display a widget preview or raw embed code for an object in the template use the following::
+
+	{% load embed %}
+	
+	{% widget_code myobject %}
+	{% widget_preview myobject %}
+
 ``django-embed9`` provides a simple demo with example usage. To install it from the console, navigate to ``embed9/demo`` directory and execute ``make install`` command. To run it, type ``make``.
 
 Customization
 =============
 
 ...
+
+You may want to change the default templates for embed code or for the JavaScript loader. In order to do that specify these templates in your ``Embeddable`` class::
+
+    class ImageEmbed(Embeddable):
+        code_template = 'myapp/mycode.html'
+        loader_template = 'myapp/myloader.js'
+
+Again, if you need to provide these names dynamically, define ``get_code_template()`` and ``get_loader_template()`` methods.
+
+Remember to use ``{{ widget_id }}`` as shown in the default templates. It is necessary if you want to allow many widgets on a single page.
 
 Notes
 =====
