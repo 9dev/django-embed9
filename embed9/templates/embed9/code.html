@@ -1,0 +1,11 @@
+<div id="widget_{{ widget_id }}"></div>
+<script type="text/javascript">
+	(function(){
+		var s = document.createElement("script");
+		s.src = "//{{ domain }}{{ loader_url }}";
+		s.async = "async";
+		s.type = "text/javascript";
+		var x = document.getElementById("widget_{{ widget_id }}");
+		x.insertBefore(s,x.lastChild);
+	}());
+</script>
