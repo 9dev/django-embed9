@@ -22,3 +22,8 @@ class Embeddable:
         return self.form_class
     form_class = DummyForm
     
+    def get_form_template(self):
+        """ Return form template """
+        return self.form_template
+    form_template = 'embed9/form.html'
+    
