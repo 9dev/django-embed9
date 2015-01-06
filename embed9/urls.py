@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, url
 
-urlpatterns = patterns('',               
-    # url(r'^$', someview, name='someview'),
+from embed9 import views
+
+urlpatterns = patterns('',
+    url(r'^widget/(?P<app>[0-9a-z_.]+)/(?P<model>[0-9a-z_]+)/(?P<pk>\d+)$', views.widget, name='widget'),
 )
