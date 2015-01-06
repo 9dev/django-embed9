@@ -2,5 +2,13 @@
 
 {% block content %}
 	<h1>{{ text.title }}</h1>
-	{{ text.text }}
+	<p>Contents: {{ text.text }}</p>
+	
+	{% load embed %}
+	
+	<p>Widget code:
+	<input type="text" readonly="readonly" value="{% widget_code text %}"></p>
+	
+	<p>Widget preview:<br>
+	{% widget_preview text %}</p>
 {% endblock %}

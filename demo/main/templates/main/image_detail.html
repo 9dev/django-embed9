@@ -2,5 +2,14 @@
 
 {% block content %}
 	<h1>{{ image.title }}</h1>
-	<img src="{{ image.image.url }}" alt="">
+	<img src="{{ image.image.url }}" alt=""><br>
+	
+	{% load embed %}
+	
+	<p>Widget code:
+	<input type="text" readonly="readonly" value="{% widget_code image %}"></p>
+	
+	<p>Widget preview:<br>
+	{% widget_preview image %}</p>
+	
 {% endblock %}
