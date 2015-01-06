@@ -1,3 +1,4 @@
+from embed9.forms import DummyForm
 
 class Embeddable:
     
@@ -15,4 +16,9 @@ class Embeddable:
         """ Return name of the template containing javascript loader of the widget """
         return self.loader_template
     loader_template = 'embed9/loader.js'
+    
+    def get_form_class(self):
+        """ Return form class representing additional widget options such as color or size """
+        return self.form_class
+    form_class = DummyForm
     
