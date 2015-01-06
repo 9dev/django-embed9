@@ -24,6 +24,10 @@ Installation
 
 - ...
 
+- Add url pattern to your urls.py::
+
+    url(r'^embed/', include('embed9.urls', namespace='embed9'))
+
 Usage
 =====
 
@@ -37,7 +41,14 @@ For example model ``Image``::
     class ImageEmbed(Embeddable):
         pass
 
-...
+In order to provide your own template of the widget, add ``widget_template`` to the class (or define ``get_widget_template()`` method)::
+
+    class ImageEmbed(Embeddable):
+        widget_template = 'myapp/mywidget.html'
+
+Inside the template you can access a context variable named after your model (but in lower case). In this example it would be ``{{ image }}``.
+
+By default, defined widget template will render as an `iframe` on external websites. 
 
 ``django-embed9`` provides a simple demo with example usage. To install it from the console, navigate to ``embed9/demo`` directory and execute ``make install`` command. To run it, type ``make``.
 
