@@ -48,7 +48,7 @@ from django.conf import settings
 
 # Add our app's templates to TEMPLATE_DIRS
 TEMPLATE_DIRS = settings.TEMPLATE_DIRS + (       
-    os.path.join(os.path.dirname(BASE_DIR), 'templates'),
+    os.path.join(os.path.dirname(BASE_DIR), 'embed9/templates'),
 )
 
 LANGUAGE_CODE = 'en-us'
