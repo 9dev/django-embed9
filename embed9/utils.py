@@ -1,8 +1,11 @@
 from django.http import Http404
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import get_app, get_models
+from django.conf import settings
+from django.shortcuts import get_object_or_404
 
 from importlib import import_module
+from urllib import urlencode
 
 APPS_MODELS = {}
 
@@ -26,7 +29,45 @@ def get_embeddable(app_name, model_name):
     try:
         module = import_module(app_name + '.embed')
         embed = getattr(module, model_name + 'Embed')()
-    except Exception:
+    except Exception as e:
+        if settings.DEBUG:
+            raise e
         raise Http404
     return embed
     
+def get_form_initial(form_class):
+    result = {}
+    form = form_class()
+    for field in form:
+        result[field.name] = field.value()
+    return result
+    
+def get_params(form_class, get_dict):
+    """ Return valid form parameters or raise 404 """
+    params = {}
+    initial = get_form_initial(form_class)
+    form = form_class(initial)
+    
+    for name,value in get_dict.items():
+        field = form.fields.get(name)
+        if field and value:
+            form.data[name] = value
+
+    if not form.is_valid():
+        raise Http404
+    
+    for n, v in form.cleaned_data.items():
+        params[n] = v
+        
+    return params
+
+def common_view(app, model, pk):
+    """ Validate passed arguments and get an embed instance and a model object """
+    model_ = get_appmodel(app, model)
+    embed = get_embeddable(app, model_.__name__)
+    obj = get_object_or_404(model_, pk=pk)
+    return embed, obj
+
+def get_encoded_params(params):
+    """ Generate the GET string for the URL """
+    return '?' + urlencode(params) if params else ''
