@@ -1,0 +1,23 @@
+<html><body>
+
+{% if show_preview %}
+	{# show preview only if there is no errors #}
+	{% load embed %}
+	
+	<h2>Preview</h2>
+	<p>Widget code:
+	<input type="text" readonly="readonly" value="{% widget_code obj params=params %}"></p>
+	<p>Widget preview:<br>
+	{% widget_preview obj params=params %}</p>
+{% endif %}
+
+{% if form.fields|length > 0 %}
+	{# show form only if it contains at least one field #}
+	<h2>Adjust the widget</h2>
+	<form action="" method="post">
+		{{ form.as_p }}
+		<input type="submit" value="Update widget">
+	</form>
+{% endif %}
+
+</body></html>
