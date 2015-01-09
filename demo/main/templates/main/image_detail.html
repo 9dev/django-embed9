@@ -7,9 +7,9 @@
 	{% load embed %}
 	
 	<p>Widget code:
-	<input type="text" readonly="readonly" value="{% widget_code image %}"></p>
+	<input type="text" readonly="readonly" value="{% widget_code image width=100 %}"></p>
 	
 	<p>Widget preview:<br>
-	{% widget_preview image %}</p>
+	{% widget_preview image width=100 %}</p>
 	
 {% endblock %}
