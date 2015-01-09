@@ -49,3 +49,9 @@ reinstall:
 	)
 	$(MAKE) syncdb
 
+silk_reset:
+	( \
+		. $(VENV_PATH)/bin/activate; \
+		$(PYTHON_COMMAND) manage.py silk_clear_request_log; \
+	)
+	

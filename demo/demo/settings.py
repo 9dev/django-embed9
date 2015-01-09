@@ -24,6 +24,8 @@ INSTALLED_APPS = (
 	'debug_toolbar',
 	'embed9',
 	'main',
+    
+    'silk',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -33,6 +35,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'silk.middleware.SilkyMiddleware',
 )
 
 ROOT_URLCONF = 'demo.urls'
@@ -65,3 +69,4 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 
+SILKY_PYTHON_PROFILER = True
