@@ -1,12 +1,13 @@
 <html>
 <head>
 	<style>
-		body {background-color: #66FF99}
+		body {background-color: #{{ params.color }}}
 	</style>
 </head>
 <body>
 	<b>Image widget</b><br>
 	<i>{{ image.title }}</i><br>
-	<img src="{{ image.image.url }}" style="width:100px" alt="">
+	<img src="{{ image.image.url }}" style="width:{{ params.width }}px" alt=""><br>
+	Is awesome: {{ params.awesome }}
 </body>
 </html>
