@@ -60,15 +60,20 @@ To display a widget preview or raw embed code for an object in the template use 
 	
 	{% widget_code myobject %}
 	{% widget_preview myobject %}
+	
+To display an URL to the preview/customization page you can use templatetag ``widget_preview_url``::
+
+	{% widget_preview_url myobject %}
 
 ``django-embed9`` provides a simple demo with example usage. To install it from the console, navigate to ``embed9/demo`` directory and execute ``make install`` command. To run it, type ``make``.
 
 Customization
 =============
 
-...
+Templates
+---------
 
-You may want to change the default templates for embed code or for the JavaScript loader. In order to do that specify these templates in your ``Embeddable`` class::
+You may want to change the default templates for embed code or for the JavaScript loader. To do that, specify these templates in your ``Embeddable`` class::
 
     class ImageEmbed(Embeddable):
         code_template = 'myapp/mycode.html'
@@ -81,6 +86,39 @@ Remember to use ``{{ widget_name }}`` as shown in the default templates. It is r
 Of course, sometimes JavaScript loader is not necessary. If this is the case, you will just need to create a code template similar to::
 
 	<iframe src="{{ domain }}{{ iframe_url }}"></iframe>
+
+Parameters
+----------
+
+You may want to add some custom parameters such as widget size or color and allow your users to adjust them.
+
+To define them create a form class and tell ``django-embed9`` where it should look for it::
+
+	# embed.py
+	class ImageEmbed(Embeddable):
+		form_class = MyAwesomeForm
+        form_template = 'myapp/myform.html'
+        
+Example form::
+
+	# forms.py
+	class MyAwesomeForm(forms.Form):
+		size = forms.IntegerField(max_value=500, min_value=100, initial=200)
+		color = forms.CharField(max_length=6)
+	
+Now all these parameters are going to be passed to the templates as a dictionary named ``{{ params }}``::
+
+	<p>Size of this widget should be: {{ params.size }}</p>
+
+Widget customization is available on the preview page. To display a link to it, write::
+
+	{% load embed %}
+	{% widget_preview_url myobject %}
+
+You can also pass the parameters directly to templatetags::
+
+	{% load embed %}
+	{% widget_code myobject size=1000 %}
 
 In progress
 ===========
