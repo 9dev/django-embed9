@@ -76,7 +76,11 @@ You may want to change the default templates for embed code or for the JavaScrip
 
 Again, if you need to provide these names dynamically, define ``get_code_template()`` and ``get_loader_template()`` methods.
 
-Remember to use ``{{ widget_id }}`` as shown in the default templates. It is necessary if you want to allow many widgets on a single page.
+Remember to use ``{{ widget_name }}`` as shown in the default templates. It is required if you want to allow many widgets on a single page.
+
+Of course, sometimes JavaScript loader is not necessary. If this is the case, you will just need to create a code template similar to::
+
+	<iframe src="{{ domain }}{{ iframe_url }}"></iframe>
 
 In progress
 ===========
