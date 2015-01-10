@@ -40,12 +40,15 @@ def widget(obj, *args, **kwargs):
 
 @register.simple_tag
 def widget_preview(obj, *args, **kwargs):
+    """ Render and return widget preview """  
     return widget(obj, *args, **kwargs)
 
 @register.simple_tag
 def widget_code(obj, *args, **kwargs):
+    """ Render and return widget embed code """  
     return escape(widget(obj, *args, **kwargs))
 
 @register.simple_tag
 def widget_preview_url(obj):
+    """ Render and return widget preview (and adjustment) url """  
     return reverse('embed9:preview', kwargs={'app': obj._meta.app_label, 'model': obj.__class__.__name__.lower(), 'pk': obj.pk})
