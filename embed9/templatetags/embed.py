@@ -22,7 +22,7 @@ def widget(obj, *args, **kwargs):
     t = loader.get_template(template_name)
     form_class = embed.get_form_class()
     params = get_form_initial(form_class)
-    kwparams = kwargs.pop('params', None)
+    kwparams = kwargs.pop('params', {})
     
     for n,v in kwargs.items():
         params[n] = v
