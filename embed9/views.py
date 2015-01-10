@@ -1,8 +1,8 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.views.decorators.clickjacking import xframe_options_exempt
-from django.http import HttpResponse
 from django.utils.safestring import mark_safe
 
 from embed9.utils import get_params, common_view, get_encoded_params
@@ -19,14 +19,15 @@ def widget(request, app, model, pk):
     }, RequestContext(request))
 
 @xframe_options_exempt
-def loader(request, app, model, pk, widget_id):
+def loader(request, app, model, pk):
     embed, obj = common_view(app, model, pk)
     params = get_params(embed.get_form_class(), request.GET)
     template = embed.get_loader_template()
 
     return render_to_response(template, {
-        model : obj,
-        'widget_id' : widget_id,
+        model : obj,        
+        'widget_name' : 'widget_' + model + str(pk),
+        'domain' : Site.objects.get_current().domain,
         'iframe_url' : mark_safe(reverse('embed9:widget', kwargs={'app': app, 'model': model, 'pk': pk}) + get_encoded_params(params)),
         'params' : params,
     }, RequestContext(request))

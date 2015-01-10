@@ -4,8 +4,6 @@ from django.core.urlresolvers import reverse
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 
-from random import randrange
-
 from embed9.utils import get_embeddable, get_encoded_params, get_form_initial
 
 register = Library()
@@ -15,7 +13,6 @@ def widget(obj, *args, **kwargs):
     model_name = obj.__class__.__name__
     model_name_lower = model_name.lower()
     app_name = obj._meta.app_label
-    widget_id = randrange(10,99999)
     
     embed = get_embeddable(app_name, model_name)
     template_name = embed.get_code_template()
@@ -31,10 +28,10 @@ def widget(obj, *args, **kwargs):
         params[n] = v
     
     return t.render(Context({
-        model_name_lower : obj,
-        'widget_id' : widget_id,
+        model_name_lower : obj,        
+        'widget_name' : 'widget_' + model_name_lower + str(obj.pk),
         'domain' : Site.objects.get_current().domain,
-        'loader_url' : mark_safe(reverse('embed9:loader', kwargs={'app': app_name, 'model': model_name_lower, 'pk': obj.pk, 'widget_id': widget_id}) + get_encoded_params(params)),
+        'loader_url' : mark_safe(reverse('embed9:loader', kwargs={'app': app_name, 'model': model_name_lower, 'pk': obj.pk}) + get_encoded_params(params)),
         'params' : params,
     }))
 
