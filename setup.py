@@ -13,9 +13,9 @@ setup(
     packages=['embed9'],
     include_package_data=True,
     license='MIT License',
-    description='Another Django app', # @todo app description
+    description='Django app that make model objects embeddable on 3rd party websites',
     long_description=README,
-    url='https://pypi.python.org/pypi/django-embed9', # @todo change to github repo ?
+    url='https://github.com/9dev/django-embed9',
     author='9dev',
     author_email='9devmail@gmail.com',
     classifiers=[
