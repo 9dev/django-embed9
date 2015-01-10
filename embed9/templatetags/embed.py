@@ -26,17 +26,20 @@ def widget(obj, *args, **kwargs):
         
     for n,v in kwparams.items():
         params[n] = v
+    encoded_params = get_encoded_params(params)
+    url_kwargs = {'app': app_name, 'model': model_name_lower, 'pk': obj.pk}
     
     return t.render(Context({
         model_name_lower : obj,
         'widget_name' : 'widget_' + model_name_lower + str(obj.pk),
         'domain' : Site.objects.get_current().domain,
-        'loader_url' : mark_safe(reverse('embed9:loader', kwargs={'app': app_name, 'model': model_name_lower, 'pk': obj.pk}) + get_encoded_params(params)),
+        'iframe_url' : mark_safe(reverse('embed9:widget', kwargs=url_kwargs) + encoded_params),
+        'loader_url' : mark_safe(reverse('embed9:loader', kwargs=url_kwargs) + encoded_params),
         'params' : params,
     }))
 
 @register.simple_tag
-def widget_preview(obj, *args, **kwargs):    
+def widget_preview(obj, *args, **kwargs):
     return widget(obj, *args, **kwargs)
 
 @register.simple_tag
