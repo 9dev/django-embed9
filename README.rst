@@ -78,6 +78,13 @@ Again, if you need to provide these names dynamically, define ``get_code_templat
 
 Remember to use ``{{ widget_id }}`` as shown in the default templates. It is necessary if you want to allow many widgets on a single page.
 
+In progress
+===========
+
+- Caching
+
+- oEmbed API
+
 Notes
 =====
 
