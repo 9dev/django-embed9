@@ -1,5 +1,4 @@
 django==1.6.5
 django-debug-toolbar
-django-silk
 
 pillow
