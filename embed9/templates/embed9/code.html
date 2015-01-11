@@ -5,9 +5,8 @@
 		s.src = "//{{ domain }}{{ loader_url }}";
 		s.async = "async";
 		s.type = "text/javascript";
-		var c = function(){ {{ widget_name }}(); };
-		s.onreadystatechange = c;
-	    s.onload = c;
+	    s.onload = function(){ {{ widget_name }}(); };
+		s.onreadystatechange = s.onload;
 		var head = document.getElementsByTagName('head')[0];
    		head.appendChild(s);
 	}());
