@@ -2,18 +2,12 @@
 django-embed9
 ****************
 
-``django-embed9``
-
-...
+``django-embed9`` allows you to create widgets from your model objects and embed them on external websites. You only define how it should look like, the rest it done for you.
 
 Requirements
 ============
 
-- `django.contrib.flatpages <https://docs.djangoproject.com/en/dev/ref/contrib/flatpages/>`_
-
-- ...
-
-- Django site framework
+- `django.contrib.sites <https://docs.djangoproject.com/en/1.7/ref/contrib/sites/>`_
 
 Installation
 ============
@@ -24,8 +18,6 @@ Installation
 
 - Add ``embed9`` to your ``INSTALLED_APPS``
 
-- ...
-
 - Add url pattern to your urls.py::
 
     url(r'^embed/', include('embed9.urls', namespace='embed9'))
@@ -35,7 +27,7 @@ Installation
 Usage
 =====
 
-For every model you want to make embeddable, create a class extending ``embed9.main.Embeddable`` in ``embed.py`` file inside your app folder. Class name has to be a concatenation of your model name and a word ``Embed``.
+For every model that you want to make embeddable, create a class extending ``embed9.main.Embeddable`` in ``embed.py`` file inside your app folder. Class name has to consists of your model name and a word ``Embed``.
 
 For example model ``Image``::
 
@@ -52,7 +44,7 @@ In order to provide your own template of the widget, add ``widget_template`` to 
 
 Inside the template you can access a context variable named after your model (but in lower case). In this example it would be ``{{ image }}``.
 
-By default, defined widget template will render as an `iframe` on external websites. 
+By default, defined widget template will render as an ``iframe`` on external websites. 
 
 To display a widget preview or raw embed code for an object in the template use the following::
 
@@ -92,7 +84,7 @@ Parameters
 
 You may want to add some custom parameters such as widget size or color and allow your users to adjust them.
 
-To define them create a form class and tell ``django-embed9`` where it should look for it::
+To define such parameters, create a form class and tell ``django-embed9`` where it should look for it::
 
 	# embed.py
 	class ImageEmbed(Embeddable):
@@ -122,13 +114,7 @@ You can also pass the parameters directly to templatetags::
 
 In progress
 ===========
-
-- Caching
+	
+- widget caching
 
 - oEmbed API
-
-Notes
-=====
-
-- ...
-
