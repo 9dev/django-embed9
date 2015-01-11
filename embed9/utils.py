@@ -39,15 +39,19 @@ def get_form_initial(form_class):
     """ Return initial dict for given form class """
     result = {}
     form = form_class()
-    for field in form:
-        result[field.name] = field.value()
+    if getattr(form, 'fields', None):
+        for field in form:
+            result[field.name] = field.value()
     return result
     
 def get_params(form_class, get_dict):
     """ Return valid form parameters or raise 404 """
     params = {}
     initial = get_form_initial(form_class)
-    form = form_class(initial)
+    try:
+        form = form_class(initial)
+    except TypeError:
+        return params # empty form
     
     for name,value in get_dict.items():
         field = form.fields.get(name)
