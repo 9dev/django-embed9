@@ -1,6 +1,6 @@
-****************
+*************
 django-embed9
-****************
+*************
 
 ``django-embed9`` allows you to create widgets from your model objects and embed them on external websites. You only define how it should look like, the rest it done for you.
 
