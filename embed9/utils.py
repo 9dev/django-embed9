@@ -36,6 +36,7 @@ def get_embeddable(app_name, model_name):
     return embed
     
 def get_form_initial(form_class):
+    """ Return initial dict for given form class """
     result = {}
     form = form_class()
     for field in form:
