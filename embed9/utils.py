@@ -5,7 +5,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 
 from importlib import import_module
-from urllib import urlencode
+from urllib.parse import urlencode
 
 APPS_MODELS = {}
 
