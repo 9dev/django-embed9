@@ -1,7 +1,6 @@
 
 ENVIRONMENT = development
 PROJECT_NAME = demo
-PYTHON_COMMAND = python2.7
 VENV_PATH = ./virtualenv/demo
 
 #####
@@ -10,16 +9,20 @@ default:
 	$(MAKE) run
 
 install:
-	virtualenv $(VENV_PATH)
 	$(MAKE) upgrade
-	$(MAKE) syncdb
+	( \
+		. $(VENV_PATH)/bin/activate; \
+		python manage.py makemigrations; \
+		python manage.py migrate; \
+		python manage.py loaddata data_common.json; \
+	)
 
 #####
 
 run:
 	( \
 		. $(VENV_PATH)/bin/activate; \
-		$(PYTHON_COMMAND) manage.py runserver localhost:8000; \
+		python manage.py runserver localhost:8000; \
 	)
 
 upgrade:
@@ -28,24 +31,16 @@ upgrade:
 		pip install -r requirements.txt; \
 	)
 
-syncdb:
-	( \
-		. $(VENV_PATH)/bin/activate; \
-		$(PYTHON_COMMAND) manage.py syncdb --noinput; \
-	)
-
 test:
 	( \
 		. $(VENV_PATH)/bin/activate; \
-		$(PYTHON_COMMAND) manage.py test main; \
-		$(PYTHON_COMMAND) manage.py test embed9; \
+		python manage.py test --failfast --noinput; \
 	)
 
-reinstall:
+coverage:
 	( \
 		. $(VENV_PATH)/bin/activate; \
-		$(PYTHON_COMMAND) manage.py sqlclear main | $(PYTHON_COMMAND) manage.py dbshell; \
-		$(PYTHON_COMMAND) manage.py sqlclear embed9 | $(PYTHON_COMMAND) manage.py dbshell; \
+		coverage run manage.py test -v 2; \
+		coverage report -m --omit=$(VENV_PATH)/*; \
 	)
-	$(MAKE) syncdb
-	
+

@@ -119,6 +119,11 @@ You can also pass the parameters directly to templatetags::
 In progress
 ===========
 	
-- widget caching
+- Widget caching.
 
-- oEmbed API
+- oEmbed API.
+
+Notes
+=========
+
+- Tested with Python 3.4 and Django 1.7.4.

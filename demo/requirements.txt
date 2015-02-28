@@ -1,3 +1,4 @@
-django==1.6.5
-
+django==1.7.4
 pillow
+django-debug-toolbar
+coverage
