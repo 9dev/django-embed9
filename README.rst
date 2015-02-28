@@ -116,10 +116,15 @@ You can also pass the parameters directly to templatetags::
 	{% load embed %}
 	{% widget_code myobject size=1000 %}
 
+Caching
+=======
+
+By default, widgets (iframes and javascript loaders) are cached for an hour. In order to adjust this behaviour, set the ``WIDGET_CACHE_TIME`` setting::
+
+    WIDGET_CACHE_TIME = 24 * 60 * 60
+
 In progress
 ===========
-	
-- Widget caching.
 
 - oEmbed API.
 

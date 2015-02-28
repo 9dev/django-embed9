@@ -21,9 +21,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-	'debug_toolbar',
-	'embed9',
-	'main',
+    'debug_toolbar',
+    'embed9',
+    'main',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -68,3 +68,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+
+WIDGET_CACHE_TIME = 24 * 60 * 60

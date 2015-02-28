@@ -3,11 +3,16 @@ from django.template import RequestContext
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.views.decorators.cache import cache_page
 from django.utils.safestring import mark_safe
+from django.conf import settings
 
 from embed9.utils import get_params, common_view, get_encoded_params
 
+WIDGET_CACHE_TIME = getattr(settings, 'WIDGET_CACHE_TIME', 60*60)
 
+
+@cache_page(WIDGET_CACHE_TIME)
 @xframe_options_exempt
 def widget(request, app, model, pk):
     embed, obj = common_view(app, model, pk)
@@ -20,6 +25,7 @@ def widget(request, app, model, pk):
     }, RequestContext(request))
 
 
+@cache_page(WIDGET_CACHE_TIME)
 @xframe_options_exempt
 def loader(request, app, model, pk):
     embed, obj = common_view(app, model, pk)
