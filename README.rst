@@ -24,6 +24,10 @@ Installation
 
 - Create a site in your database and set the SITE_ID setting
 
+- (Optional) Add the following line to your ``robots.txt`` file::
+
+    Disallow: /embed/widget/
+
 Usage
 =====
 
