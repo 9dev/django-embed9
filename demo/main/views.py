@@ -4,16 +4,16 @@ from django.http import HttpResponse
 from main.models import Image, Text
 
 def index(request):
-	return HttpResponse('Go to /texts or /images')
+    return HttpResponse('Go to /texts or /images')
 
 class ImageDetailView(DetailView):
-	model = Image
+    model = Image
 
 class ImageListView(ListView):
-	model = Image
+    model = Image
 
 class TextDetailView(DetailView):
-	model = Text
+    model = Text
 
 class TextListView(ListView):
-	model = Text
+    model = Text
