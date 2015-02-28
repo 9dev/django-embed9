@@ -53,7 +53,7 @@ def get_params(form_class, get_dict):
     initial = get_form_initial(form_class)
     form = form_class(initial)
     
-    for name,value in get_dict.items():
+    for name, value in get_dict.items():
         field = form.fields.get(name)
         if field and value:
             form.data[name] = value

@@ -1,18 +1,18 @@
 {{ widget_name }} = function (){	
 	var divs = [];
-	var item;
+	var item, i;
 	
 	if ( typeof(document.getElementsByClassName) == "function" ) {
 		divs = document.getElementsByClassName('{{ widget_name }}');
 	}
 	else {
 		var temp = document.getElementsByTagName("div");
-		for (var i = 0; i < temp.length; ++i) {
+		for (i = 0; i < temp.length; ++i) {
 			if (temp[i].className == '{{ widget_name }}') divs.push(temp[i]);
 		}
 	}
 	
-	for (var i = 0; i < divs.length; ++i) {
+	for (i = 0; i < divs.length; ++i) {
 		item = divs[i];
 
 		if (item.innerHTML == '') {

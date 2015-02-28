@@ -9,4 +9,4 @@ class ImageWidgetForm(forms.ModelForm):
 
     class Meta:
         model = Image
-        fields = ['awesome',]
+        fields = ['awesome']

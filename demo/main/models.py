@@ -8,7 +8,7 @@ class Text(models.Model):
     user = models.ForeignKey('auth.User', blank=True, null=True)
 
     def get_absolute_url(self):
-        return reverse('main:text_detail', kwargs={'pk':str(self.id)})
+        return reverse('main:text_detail', kwargs={'pk': str(self.id)})
 
 
 class Image(models.Model):
@@ -18,4 +18,4 @@ class Image(models.Model):
     awesome = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('main:image_detail', kwargs={'pk':str(self.id)})
+        return reverse('main:image_detail', kwargs={'pk': str(self.id)})
