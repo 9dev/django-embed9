@@ -1,7 +1,7 @@
 from embed9.forms import DummyForm
 
+
 class Embeddable:
-    
     def get_widget_template(self):
         """ Return name of the template containing iframe contents """
         return self.widget_template
@@ -26,4 +26,3 @@ class Embeddable:
         """ Return form template """
         return self.form_template
     form_template = 'embed9/form.html'
-    

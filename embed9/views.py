@@ -7,6 +7,7 @@ from django.utils.safestring import mark_safe
 
 from embed9.utils import get_params, common_view, get_encoded_params
 
+
 @xframe_options_exempt
 def widget(request, app, model, pk):
     embed, obj = common_view(app, model, pk)
@@ -17,6 +18,7 @@ def widget(request, app, model, pk):
         model : obj,
         'params' : params,
     }, RequestContext(request))
+
 
 @xframe_options_exempt
 def loader(request, app, model, pk):
@@ -31,6 +33,7 @@ def loader(request, app, model, pk):
         'iframe_url' : mark_safe(reverse('embed9:widget', kwargs={'app': app, 'model': model, 'pk': pk}) + get_encoded_params(params)),
         'params' : params,
     }, RequestContext(request))
+
 
 def preview(request, app, model, pk):
     embed, obj = common_view(app, model, pk)
