@@ -1,4 +1,4 @@
-django==1.7.4
+django==1.11.28
 pillow
 django-debug-toolbar
 coverage
